@@ -1,11 +1,11 @@
-###What is
+### What is
 
 Neural-candles, a monolithic python backend to process candlesticks and spit price predictions, based on neural networks.
 NNs are LSTMs running on top of KERAS/Theano.
 
 Made to be compatible with gekko trading bot running a custom strategy that sends HTTP requests. Adaptating to other bots should involve only decoding the provided candle from server side (this) and finding a way for the client to send candles via HTTP and expect the prediction.
 
-###Goals
+### Goals
 
 The network created is initially amorphous, its structure variates according to given parameters at creation time. An operation onvenitly designed for usage with genetic algorithms.
 So we basically test diverse neural network architectures thru GA.
