@@ -35,7 +35,7 @@ def getServer(handler=getHandler, responseFunction=None, port=2999):
         exit("useless server")
 
     handler.responseFunction = responseFunction
-    ADDR = ("", port),
+    ADDR = ("", port)
     TCPServer = http.server.HTTPServer(ADDR, handler)
     #server = Thread(target=TCPServer.serve_forever)
     TCPServer.serve_forever()
