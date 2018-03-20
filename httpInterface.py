@@ -6,16 +6,40 @@ from threading import Thread
 import urllib.parse
 stdHandler = http.server.SimpleHTTPRequestHandler
 
-class getHandler(http.server.SimpleHTTPRequestHandler):
+class getHandler(stdHandler):
+
     def do_GET(self):
+        self.send_response(200)
+        print(self.headers)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        try:
+            query = urllib.parse.urlparse(self.path).query
+        except:
+            print("ERRR")
+            self.wfile.write(b'')
+            raise
 
-        param=urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
-        print(param)
+        parameters = dict(qc.split("=") for qc in query.split("&"))
 
-def getServer(handler=getHandler, port=2999):
-    httpd = socketserver.TCPServer(("", port), handler)
-    server = Thread(target=httpd.serve_forever)
+        print("params > %s " % parameters)
+        #print("{} wrote:".format(self.client_address[0]) + param)
+        response = self.responseFunction(parameters)
+
+        response = str(response).encode('utf-8')
+        self.wfile.write(response)
+        return
+
+def getServer(handler=getHandler, responseFunction=None, port=2999):
+    if not (handler or responseFunction):
+        exit("useless server")
+
+    handler.responseFunction = responseFunction
+    ADDR = ("", port),
+    TCPServer = http.server.HTTPServer(ADDR, handler)
+    #server = Thread(target=TCPServer.serve_forever)
+    TCPServer.serve_forever()
     server.start()
 
-    return httpd
+    return TCPServer
 
