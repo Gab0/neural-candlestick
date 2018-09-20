@@ -1,0 +1,44 @@
+{
+    "neuralLayers": [
+        {
+            "type": 0,
+            "subtype": 2,
+            "size": 100,
+            "rate": 0.2,
+            "filters": 20,
+            "alpha": 0.3
+        },
+
+        {
+            "type": 0,
+            "subtype": 1,
+            "size": 80,
+            "rate": 0.4,
+            "filters": 20,
+            "alpha": 0.3
+        },
+
+        {
+            "type": 0,
+            "subtype": 1,
+            "size": 60,
+            "rate": 0.4,
+            "filters": 2,
+            "alpha": 0.3
+        },
+
+        {
+            "type": 0,
+            "subtype": 1,
+            "size": 10,
+            "rate": 0.4,
+            "filters": 40,
+            "alpha": 0.3
+        }
+    ],
+    "stageonesize": 0,
+    "optimizer": 0,
+    "loss": 1,
+    "foresee": 6,
+    "historySize": 18
+}
